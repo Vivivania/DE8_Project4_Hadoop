@@ -19,7 +19,8 @@ class OrderDateCount(MRJob):
     def steps(self):
         return [
             MRStep(mapper=self.mapper, reducer=self.reducer),
-            MRStep(reducer=self.sort)
+            MRStep(reducer=self.sort),
+            MRStep(mapper=self.mapper_order_total, reducer=self.reducer_OrderTotal_per_Month)
         ]
 
     def mapper(self, _, line):
